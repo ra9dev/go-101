@@ -36,6 +36,8 @@ func NewServer(ctx context.Context, address string, store store.Store) *Server {
 func (s *Server) basicHandler() chi.Router {
 	r := chi.NewRouter()
 
+	// REST
+	// сущность/идентификатор
 	r.Post("/laptops", func(w http.ResponseWriter, r *http.Request) {
 		laptop := new(models.Laptop)
 		if err := json.NewDecoder(r.Body).Decode(laptop); err != nil {
@@ -53,6 +55,22 @@ func (s *Server) basicHandler() chi.Router {
 		}
 
 		render.JSON(w, r, laptops)
+	})
+	r.Get("/laptops/{id}", func(w http.ResponseWriter, r *http.Request) {
+		idStr := chi.URLParam(r, "id")
+		id, err := strconv.Atoi(idStr)
+		if err != nil {
+			fmt.Fprintf(w, "Unknown err: %v", err)
+			return
+		}
+
+		laptop, err := s.store.ByID(r.Context(), id)
+		if err != nil {
+			fmt.Fprintf(w, "Unknown err: %v", err)
+			return
+		}
+
+		render.JSON(w, r, laptop)
 	})
 	r.Put("/laptops", func(w http.ResponseWriter, r *http.Request) {
 		laptop := new(models.Laptop)
