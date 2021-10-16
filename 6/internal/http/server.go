@@ -2,56 +2,85 @@ package http
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"lectures-6/internal/models"
+	"lectures-6/internal/store"
 	"log"
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/go-chi/chi"
+	"github.com/go-chi/render"
 )
 
 type Server struct {
 	ctx         context.Context
 	idleConnsCh chan struct{}
+	store       store.Store
 
 	Address string
 }
 
-func NewServer(ctx context.Context, address string) *Server {
+func NewServer(ctx context.Context, address string, store store.Store) *Server {
 	return &Server{
 		ctx:         ctx,
-		Address:     address,
 		idleConnsCh: make(chan struct{}),
+		store:       store,
+
+		Address: address,
 	}
 }
 
-func adder(w http.ResponseWriter, r *http.Request) {
-	numbers := r.URL.Path[1:] // "123"
+func (s *Server) basicHandler() chi.Router {
+	r := chi.NewRouter()
 
-	sum := 0
-	for _, nStr := range numbers {
-		n, err := strconv.Atoi(string(nStr)) // "1" -> 1
-		if err != nil {
-			fmt.Fprintf(w, "Got err: %v", err)
+	r.Post("/laptops", func(w http.ResponseWriter, r *http.Request) {
+		laptop := new(models.Laptop)
+		if err := json.NewDecoder(r.Body).Decode(laptop); err != nil {
+			fmt.Fprintf(w, "Unknown err: %v", err)
 			return
 		}
 
-		sum += n
-	}
+		s.store.Create(r.Context(), laptop)
+	})
+	r.Get("/laptops", func(w http.ResponseWriter, r *http.Request) {
+		laptops, err := s.store.All(r.Context())
+		if err != nil {
+			fmt.Fprintf(w, "Unknown err: %v", err)
+			return
+		}
 
-	fmt.Fprintf(w, "Sum of path: %d", sum)
+		render.JSON(w, r, laptops)
+	})
+	r.Put("/laptops", func(w http.ResponseWriter, r *http.Request) {
+		laptop := new(models.Laptop)
+		if err := json.NewDecoder(r.Body).Decode(laptop); err != nil {
+			fmt.Fprintf(w, "Unknown err: %v", err)
+			return
+		}
+
+		s.store.Update(r.Context(), laptop)
+	})
+	r.Delete("/laptops/{id}", func(w http.ResponseWriter, r *http.Request) {
+		idStr := chi.URLParam(r, "id")
+		id, err := strconv.Atoi(idStr)
+		if err != nil {
+			fmt.Fprintf(w, "Unknown err: %v", err)
+			return
+		}
+
+		s.store.Delete(r.Context(), id)
+	})
+
+	return r
 }
 
 func (s *Server) Run() error {
-	mux := http.NewServeMux()
-
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello world!"))
-	})
-	mux.HandleFunc("/123", adder)
-
 	srv := &http.Server{
 		Addr:         s.Address,
-		Handler:      mux,
+		Handler:      s.basicHandler(),
 		ReadTimeout:  time.Second * 5,
 		WriteTimeout: time.Second * 30,
 	}
