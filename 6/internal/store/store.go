@@ -11,6 +11,9 @@ type Store interface {
 	ByID(ctx context.Context, id int) (*models.Laptop, error)
 	Update(ctx context.Context, laptop *models.Laptop) error
 	Delete(ctx context.Context, id int) error
+
+	// Laptops() LaptopsRepository
+	// Phones() PhonesRepository
 }
 
 // electronics

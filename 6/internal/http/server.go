@@ -38,6 +38,8 @@ func (s *Server) basicHandler() chi.Router {
 
 	// REST
 	// сущность/идентификатор
+	// /electronics/laptops
+	// /electronics/phones
 	r.Post("/laptops", func(w http.ResponseWriter, r *http.Request) {
 		laptop := new(models.Laptop)
 		if err := json.NewDecoder(r.Body).Decode(laptop); err != nil {
