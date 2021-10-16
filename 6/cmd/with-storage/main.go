@@ -1,18 +1,16 @@
 package main
 
 import (
-	"fmt"
+	"context"
+	"lectures-6/internal/http"
 	"log"
-	"net/http"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
-}
-
 func main() {
-	http.HandleFunc("/", handler)
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		log.Fatal(err)
+	srv := http.NewServer(context.Background(), ":8080")
+	if err := srv.Run(); err != nil {
+		log.Println(err)
 	}
+
+	srv.WaitForGracefulTermination()
 }
