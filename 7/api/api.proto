@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option go_package = "lecture_7/api";
+package api;
+
+// MAIL SERVICE
+service MailService {
+  rpc MailSend(MailSendRequest) returns (Empty);
+}
+
+message MailSendRequest {
+  string to = 1;
+  string message = 2;
+}
+// MAIL SERVICE
+
+message Empty {}
+
+// PersonalAccountService
+service PersonalAccountService {
+  rpc PersonalAccount(PersonalAccountRequest) returns (PersonalAccountResponse);
+}
+
+message PersonalAccountRequest {
+  int64 id = 1;
+}
+
+message PersonalAccountResponse {
+  int64 id = 1;
+  string name = 2;
+  uint32 age = 3;
+}
+
+// PersonalAccountService
