@@ -9,3 +9,9 @@ type Laptop struct {
 	RAM    int `json:"ram"`
 	Cores  int `json:"cores"`
 }
+
+type Phone struct {
+	ID           int    `json:"id"`
+	Name         string `json:"name"`
+	Manufacturer string `json:"manufacturer"`
+}

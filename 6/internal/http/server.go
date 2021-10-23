@@ -47,10 +47,10 @@ func (s *Server) basicHandler() chi.Router {
 			return
 		}
 
-		s.store.Create(r.Context(), laptop)
+		s.store.Laptops().Create(r.Context(), laptop)
 	})
 	r.Get("/laptops", func(w http.ResponseWriter, r *http.Request) {
-		laptops, err := s.store.All(r.Context())
+		laptops, err := s.store.Laptops().All(r.Context())
 		if err != nil {
 			fmt.Fprintf(w, "Unknown err: %v", err)
 			return
@@ -66,7 +66,7 @@ func (s *Server) basicHandler() chi.Router {
 			return
 		}
 
-		laptop, err := s.store.ByID(r.Context(), id)
+		laptop, err := s.store.Laptops().ByID(r.Context(), id)
 		if err != nil {
 			fmt.Fprintf(w, "Unknown err: %v", err)
 			return
@@ -81,7 +81,7 @@ func (s *Server) basicHandler() chi.Router {
 			return
 		}
 
-		s.store.Update(r.Context(), laptop)
+		s.store.Laptops().Update(r.Context(), laptop)
 	})
 	r.Delete("/laptops/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idStr := chi.URLParam(r, "id")
@@ -91,7 +91,7 @@ func (s *Server) basicHandler() chi.Router {
 			return
 		}
 
-		s.store.Delete(r.Context(), id)
+		s.store.Laptops().Delete(r.Context(), id)
 	})
 
 	return r
