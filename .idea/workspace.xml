@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a4f33639-e950-498b-a75b-80c02c234c52" name="Default Changelist" comment="" />
+    <list default="true" id="a4f33639-e950-498b-a75b-80c02c234c52" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/8/cmd/simple/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/cmd/with-storage/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/internal/http/server.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/internal/models/laptop.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/internal/store/inmemory/db.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/internal/store/inmemory/laptops.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/internal/store/inmemory/phones.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8/internal/store/store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/6/internal/http/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/6/internal/http/server.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,10 +36,29 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/6" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/6" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/8" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
