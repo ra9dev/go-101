@@ -2,6 +2,7 @@ package postgres
 
 import (
 	"context"
+	"fmt"
 	"github.com/jmoiron/sqlx"
 	"lecture-9/internal/models"
 	"lecture-9/internal/store"
@@ -33,14 +34,19 @@ func (c CategoriesRepository) Create(ctx context.Context, category *models.Categ
 }
 
 func (c CategoriesRepository) All(ctx context.Context, filter *models.CategoriesFilter) ([]*models.Category, error) {
+	categories := make([]*models.Category, 0)
 	basicQuery := "SELECT * FROM categories"
 
 	if filter.Query != nil {
-		// sql-инъекция
-		basicQuery += " WHERE name ilike '%" + *filter.Query + "%'"
+		basicQuery = fmt.Sprintf("%s WHERE name ILIKE $1", basicQuery)
+
+		if err := c.conn.Select(&categories, basicQuery, "%"+*filter.Query+"%"); err != nil {
+			return nil, err
+		}
+
+		return categories, nil
 	}
 
-	categories := make([]*models.Category, 0)
 	if err := c.conn.Select(&categories, basicQuery); err != nil {
 		return nil, err
 	}
