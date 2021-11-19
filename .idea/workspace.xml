@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a4f33639-e950-498b-a75b-80c02c234c52" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/9/cmd/db-connect/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/9/cmd/simple/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/9/cmd/with-storage/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/9/internal/business/manager.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/9/internal/http/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/9/internal/models/goods.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/9/internal/store/postgres/categories.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/9/internal/store/postgres/db.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/9/internal/store/postgres/goods.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/9/internal/store/store.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/10/cmd/with-storage/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/10/internal/business/manager.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/10/internal/http/categories.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/10/internal/http/server.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/10/internal/http/server_opts.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/10/internal/models/categories.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/10/internal/models/goods.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/10/internal/store/postgres/categories.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/10/internal/store/postgres/db.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/10/internal/store/postgres/goods.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/10/internal/store/store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/9/cmd/db-connect/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/9/cmd/simple/main.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +31,9 @@
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1ztrBWlNni28dG1Jzne4A7bZlTD" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -34,17 +43,23 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.format.on.save.advertiser.fired" value="true" />
+    <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.import.settings.migrated" value="true" />
+    <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/8" />
+    <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/10" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/9" />
       <recent name="$PROJECT_DIR$/8" />
       <recent name="$PROJECT_DIR$/6" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/10" />
       <recent name="$PROJECT_DIR$/9" />
       <recent name="$PROJECT_DIR$/8" />
     </key>
@@ -63,6 +78,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
