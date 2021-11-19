@@ -19,8 +19,6 @@ type (
 		syncProducer  sarama.SyncProducer
 		consumerGroup sarama.ConsumerGroup
 
-		cacheProducer message_broker.CacheProducer
-
 		consumeHandler *cacheConsumeHandler
 		groupID        string
 	}
@@ -94,19 +92,7 @@ func (c *CacheBroker) Close() error {
 	return nil
 }
 
-type cacheProducer struct {
-	syncProducer sarama.SyncProducer
-}
-
-func (c *CacheBroker) Producer() message_broker.CacheProducer {
-	if c.cacheProducer == nil {
-		c.cacheProducer = &cacheProducer{syncProducer: c.syncProducer}
-	}
-
-	return c.cacheProducer
-}
-
-func (c cacheProducer) Remove(key interface{}) error {
+func (c *CacheBroker) Remove(key interface{}) error {
 	msg := &models.CacheMsg{
 		Command: models.CacheCommandRemove,
 		Key:     key,
@@ -128,7 +114,7 @@ func (c cacheProducer) Remove(key interface{}) error {
 	return nil
 }
 
-func (c cacheProducer) Purge() error {
+func (c *CacheBroker) Purge() error {
 	msg := &models.CacheMsg{
 		Command: models.CacheCommandPurge,
 	}
