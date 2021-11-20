@@ -20,7 +20,7 @@ type (
 		consumerGroup sarama.ConsumerGroup
 
 		consumeHandler *cacheConsumeHandler
-		groupID        string
+		clientID       string
 	}
 
 	cacheConsumeHandler struct {
@@ -29,9 +29,9 @@ type (
 	}
 )
 
-func NewCacheBroker(cache *lru.TwoQueueCache, groupID string) message_broker.CacheBroker {
+func NewCacheBroker(cache *lru.TwoQueueCache, clientID string) message_broker.CacheBroker {
 	return &CacheBroker{
-		groupID: groupID,
+		clientID: clientID,
 		consumeHandler: &cacheConsumeHandler{
 			cache: cache,
 			ready: make(chan bool),
@@ -53,7 +53,7 @@ func (c *CacheBroker) Connect(ctx context.Context, brokers []string) error {
 
 	consumerConfig := sarama.NewConfig()
 	consumerConfig.Consumer.Return.Errors = true
-	consumerGroup, err := sarama.NewConsumerGroup(brokers, c.groupID, consumerConfig)
+	consumerGroup, err := sarama.NewConsumerGroup(brokers, c.clientID, consumerConfig)
 	if err != nil {
 		return err
 	}

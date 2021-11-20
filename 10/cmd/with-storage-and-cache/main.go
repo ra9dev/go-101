@@ -29,7 +29,7 @@ func main() {
 	}
 
 	brokers := []string{"localhost:29092"}
-	broker := kafka.NewBroker(brokers, cache, "peer2")
+	broker := kafka.NewBroker(brokers, cache, "peer3")
 	if err := broker.Connect(ctx); err != nil {
 		panic(err)
 	}
@@ -37,7 +37,7 @@ func main() {
 
 	srv := http.NewServer(
 		ctx,
-		http.WithAddress(":8081"),
+		http.WithAddress(":8082"),
 		http.WithStore(store),
 		http.WithCache(cache),
 		http.WithBroker(broker),

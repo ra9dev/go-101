@@ -55,7 +55,7 @@ func (cr *CategoryResource) CreateCategory(w http.ResponseWriter, r *http.Reques
 	}
 
 	// Правильно пройтись по всем буквам и всем словам
-	cr.broker.Cache().Producer().Purge() // в рамках учебного проекта полностью чистим кэш после создания новой категории
+	cr.broker.Cache().Purge() // в рамках учебного проекта полностью чистим кэш после создания новой категории
 
 	w.WriteHeader(http.StatusCreated)
 }
@@ -139,7 +139,7 @@ func (cr *CategoryResource) UpdateCategory(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	cr.broker.Cache().Producer().Remove(category.ID)
+	cr.broker.Cache().Remove(category.ID)
 }
 
 func (cr *CategoryResource) DeleteCategory(w http.ResponseWriter, r *http.Request) {
@@ -157,5 +157,5 @@ func (cr *CategoryResource) DeleteCategory(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	cr.broker.Cache().Producer().Remove(id)
+	cr.broker.Cache().Remove(id)
 }
