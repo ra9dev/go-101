@@ -1,6 +1,7 @@
 Брокеры сообщений:
 
 - Kafka - deployments/kafka/docker-compose.yml
+- Kafka Offset Explorer - https://kafkatool.com/download.html
 - RabbitMQ - https://www.rabbitmq.com/download.html
 - Nats
   - Installation - https://docs.nats.io/nats-server/installation
